@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "249243215592",
+    "project_id": "fcodecamp-flutter",
+    "storage_bucket": "fcodecamp-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:249243215592:android:c62f22e959625f6e554b5d",
+        "android_client_info": {
+          "package_name": "com.example.f_code_camp_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "249243215592-glge7i6f4t85itg0b9pf7k47ugq11u8l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkcwbWU0j6RqmcTqd09sMdT9bsGbdFweI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "249243215592-glge7i6f4t85itg0b9pf7k47ugq11u8l.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "249243215592-2e8msnbo2jaje7i6debk8de4amaqtur1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fCodeCampFlutter"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
