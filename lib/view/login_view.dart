@@ -1,3 +1,4 @@
+import 'package:f_code_camp_flutter/constants/routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as devtools show log;
@@ -59,20 +60,19 @@ class _LoginViewState extends State<LoginView> {
                       email: email, password: password);
 
                   Navigator.of(context)
-                      .pushNamedAndRemoveUntil('/main/', (_) => false);
+                      .pushNamedAndRemoveUntil(notesRoute, (_) => false);
                 } on FirebaseAuthException catch (e) {
                   if (e.code == 'wrong-password') {
-                    devtools.log('Incorrect password');
+                    devtools.log((e.code).toString());
                   }
 
-                  devtools.log((e.code).toString());
                 }
               },
               child: const Text('Login')),
           TextButton(
               onPressed: () {
                 Navigator.of(context)
-                    .pushNamedAndRemoveUntil('/register/', (route) => false);
+                    .pushNamedAndRemoveUntil(registerRoute, (route) => false);
               },
               child: const Text('Not registered yet? Register here'))
         ],

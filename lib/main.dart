@@ -1,3 +1,4 @@
+import 'package:f_code_camp_flutter/constants/routes.dart';
 import 'package:f_code_camp_flutter/firebase_options.dart';
 import 'package:f_code_camp_flutter/view/login_view.dart';
 import 'package:f_code_camp_flutter/view/register_view.dart';
@@ -13,9 +14,9 @@ void main() {
     theme: ThemeData(primarySwatch: Colors.blue),
     home: const HomePage(),
     routes: {
-      '/login/': (context) => const LoginView(),
-      '/register/': (context) => const RegisterView(),
-      '/main/': (context) => const NotesView(),
+      loginRoute: (context) => const LoginView(),
+      registerRoute: (context) => const RegisterView(),
+      notesRoute: (context) => const NotesView(),
     },
   ));
 }
@@ -81,7 +82,7 @@ class _NotesViewState extends State<NotesView> {
                     await FirebaseAuth.instance.signOut();
                     // ignore: use_build_context_synchronously
                     Navigator.of(context)
-                        .pushNamedAndRemoveUntil('/login/', (_) => false);
+                        .pushNamedAndRemoveUntil(loginRoute, (_) => false);
                   }
               }
             }, itemBuilder: (context) {
