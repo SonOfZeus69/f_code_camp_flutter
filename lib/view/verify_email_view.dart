@@ -1,3 +1,4 @@
+import 'package:f_code_camp_flutter/constants/routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -15,15 +16,29 @@ class _VerifyEmailState extends State<VerifyEmail> {
       appBar: AppBar(
         title: const Text('Verify Email'),
       ),
-      body: Column(children: [
-        const Text('Please verify your email'),
-        TextButton(
+      body: Column(
+        children: [
+          const Text(
+              'We\'ve sent you an email verification. Please open it to verify your account.'),
+          const Text('Click the button below if you didn\'t receive an email.'),
+          TextButton(
             onPressed: () async {
               final user = FirebaseAuth.instance.currentUser;
 
               await user?.sendEmailVerification();
             },
             child: const Text('Send verification email'),
+          ),
+          TextButton(
+            onPressed: (() {
+              FirebaseAuth.instance.signOut();
+              Navigator.of(context)
+                  .pushNamedAndRemoveUntil(
+                registerRoute,
+                (route) => false,
+              );
+            }),
+            child: const Text('Restart'),
           )
         ],
       ),
