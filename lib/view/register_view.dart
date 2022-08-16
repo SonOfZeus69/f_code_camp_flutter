@@ -42,33 +42,43 @@ class _RegisterViewState extends State<RegisterView> {
             autocorrect: false,
             enableSuggestions: false,
             keyboardType: TextInputType.emailAddress,
-            decoration: const InputDecoration(hintText: 'Enter email here'),
+            decoration: const InputDecoration(
+              hintText: 'Enter email here',
+            ),
           ),
           TextField(
             controller: _password,
             autocorrect: false,
             enableSuggestions: false,
             obscureText: true,
-            decoration: const InputDecoration(hintText: 'Enter password here'),
+            decoration: const InputDecoration(
+              hintText: 'Enter password here',
+            ),
           ),
           TextButton(
-              onPressed: () async {
-                final email = _email.text;
-                final password = _password.text;
+            onPressed: () async {
+              final email = _email.text;
+              final password = _password.text;
 
-                final userCredential = await FirebaseAuth.instance
-                    .createUserWithEmailAndPassword(
-                        email: email, password: password);
+              final userCredential =
+                  await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                email: email,
+                password: password,
+              );
 
-                devtools.log(userCredential.toString());
-              },
-              child: const Text('Register')),
+              devtools.log(userCredential.toString());
+            },
+            child: const Text('Register'),
+          ),
           TextButton(
-              onPressed: () {
-                Navigator.of(context)
-                    .pushNamedAndRemoveUntil(loginRoute, (route) => false);
-              },
-              child: const Text('Already registered? Login here'))
+            onPressed: () {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                loginRoute,
+                (route) => false,
+              );
+            },
+            child: const Text('Already registered? Login here'),
+          )
         ],
       ),
     );
