@@ -59,18 +59,26 @@ class _LoginViewState extends State<LoginView> {
             onPressed: () async {
               final email = _email.text;
               final password = _password.text;
-              
+
               try {
                 await FirebaseAuth.instance.signInWithEmailAndPassword(
                   email: email,
                   password: password,
                 );
-
-                // ignore: use_build_context_synchronously
-                Navigator.of(context).pushNamedAndRemoveUntil(
-                  notesRoute,
-                  (_) => false,
-                );
+                final user = FirebaseAuth.instance.currentUser;
+                if (user?.emailVerified ?? false) {
+                  // ignore: use_build_context_synchronously
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                    notesRoute,
+                    (_) => false,
+                  );
+                } else {
+                  // ignore: use_build_context_synchronously
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                    verifyEmailRoute,
+                    (route) => false,
+                  );
+                }
               } on FirebaseAuthException catch (e) {
                 if (e.code == 'wrong-password') {
                   await showErrorDialog(
@@ -90,9 +98,9 @@ class _LoginViewState extends State<LoginView> {
                 }
               } catch (e) {
                 showErrorDialog(
-                    context,
-                    e.toString(),
-                  );
+                  context,
+                  e.toString(),
+                );
               }
             },
             child: const Text('Login'),
@@ -111,4 +119,3 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 }
-
